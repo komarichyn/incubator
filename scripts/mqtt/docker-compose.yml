@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+
+  mosquitto:
+    container_name: mosquitto
+    image: eclipse-mosquitto:latest
+    deploy:
+      resources:
+        limits:
+          memory: 125M
+    expose:
+      - "1883"
+      - "9001"
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/logs:/mosquitto/log
+      - ./mosquitto/config:/mosquitto/config
+    restart: always
